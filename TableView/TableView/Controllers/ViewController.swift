@@ -19,10 +19,14 @@ class ViewController: UIViewController, UITableViewDataSource{
         tableView.dataSource = self
         tableView.rowHeight = 120
 
+        
+        
+        
+        
         movieDataManager.makeMovieData()
         
     }
-    
+        
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
