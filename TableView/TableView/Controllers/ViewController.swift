@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITableViewDataSource{
         tableView.dataSource = self
         tableView.rowHeight = 120
 
-        
+        tableView.delegate = self
         
         
         
@@ -53,3 +53,20 @@ class ViewController: UIViewController, UITableViewDataSource{
 
 }
 
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "toDetail", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetail" {
+            
+            let detailVC = segue.destination as! DetailViewController
+            let array = movieDataManager.getMovieData()
+            let indexPath = sender as! IndexPath
+            
+            detailVC.movieData = array[indexPath.row]
+        }
+    }
+}
