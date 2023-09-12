@@ -21,12 +21,15 @@ class ViewController: UIViewController, UITableViewDataSource{
 
         tableView.delegate = self
         
-        
-        
+        title = "영화목록"
         movieDataManager.makeMovieData()
         
     }
         
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+        movieDataManager.updateMovieData()
+        tableView.reloadData()
+    }
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
