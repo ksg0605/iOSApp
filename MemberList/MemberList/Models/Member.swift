@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol MemberDelegate: AnyObject {
+    func addNewMember(_ member: Member)
+    func updateMember(index: Int, _ member: Member)
+}
+
 struct Member {
     
     lazy var memberImage: UIImage? = {
