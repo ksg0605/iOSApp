@@ -13,6 +13,7 @@
 		0838AAB82AD6946100F3A0B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0838AAB72AD6946100F3A0B7 /* Assets.xcassets */; };
 		0838AABB2AD6946100F3A0B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0838AAB92AD6946100F3A0B7 /* LaunchScreen.storyboard */; };
 		0838AAC42AD69AA900F3A0B7 /* ExtensionUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0838AAC32AD69AA900F3A0B7 /* ExtensionUIViewController.swift */; };
+		08FF10472ADA585500622E39 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF10462ADA585500622E39 /* Stopwatch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		0838AABA2AD6946100F3A0B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0838AABC2AD6946100F3A0B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0838AAC32AD69AA900F3A0B7 /* ExtensionUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIViewController.swift; sourceTree = "<group>"; };
+		08FF10462ADA585500622E39 /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				0838AAC22AD69A7C00F3A0B7 /* Supportings */,
 				0838AAB22AD6946000F3A0B7 /* ViewController.swift */,
+				08FF10462ADA585500622E39 /* Stopwatch.swift */,
 				0838AAB72AD6946100F3A0B7 /* Assets.xcassets */,
 				0838AAB92AD6946100F3A0B7 /* LaunchScreen.storyboard */,
 				0838AABC2AD6946100F3A0B7 /* Info.plist */,
@@ -147,6 +150,7 @@
 			files = (
 				0838AAC42AD69AA900F3A0B7 /* ExtensionUIViewController.swift in Sources */,
 				0838AAB32AD6946000F3A0B7 /* ViewController.swift in Sources */,
+				08FF10472ADA585500622E39 /* Stopwatch.swift in Sources */,
 				0838AAAF2AD6946000F3A0B7 /* AppDelegate.swift in Sources */,
 				0838AAB12AD6946000F3A0B7 /* SceneDelegate.swift in Sources */,
 			);

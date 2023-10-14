@@ -10,7 +10,14 @@ import SwiftUI
 
 class ViewController: UIViewController {
     
+    
     // MARK: - Variables
+    private var mainStopwatch: Stopwatch = Stopwatch()
+    private var lapStopwatch: Stopwatch = Stopwatch()
+    private var isPlay: Bool = false
+    private var lapTimeList: [String] = []
+    
+    // MARK: - UI Components
     private let mainTitle: UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -56,8 +63,7 @@ class ViewController: UIViewController {
         let btn = UIButton()
         btn.setTitle("Start", for: .normal)
         btn.setTitleColor(.green, for: .normal)
-        btn.isHidden = false
-//        btn.addTarget(self, action: #selector("tappedStartButton"), for: .touchUpInside)
+        btn.addTarget(ViewController.self, action: #selector(tappedStartAndStopButton), for: .touchUpInside)
         return btn
     }()
     
@@ -65,8 +71,8 @@ class ViewController: UIViewController {
         let btn = UIButton()
         btn.setTitle("Lap", for: .normal)
         btn.setTitleColor(.black, for: .normal)
-        btn.isHidden = false
-//        btn.addTarget(self, action: #selector("tappedLapButton"), for: .touchUpInside)
+        btn.isEnabled = false
+        btn.addTarget(ViewController.self, action: #selector(tappedLapAndResetButton), for: .touchUpInside)
         return btn
     }()
     
@@ -148,17 +154,110 @@ class ViewController: UIViewController {
         ])
         
     }
+    
+    // MARK: - functions
+    @objc func tappedStartAndStopButton() {
+        lapAndResetButton.isEnabled = true
+        
+        if !isPlay {
+            mainStopwatch.timer = Timer.scheduledTimer(timeInterval: 0.035, target: self, selector: #selector(updateMainTimer), userInfo: nil, repeats: true)
+            lapStopwatch.timer = Timer.scheduledTimer(timeInterval: 0.035, target: self, selector: #selector(updateLapTimer), userInfo: nil, repeats: true)
+            
+            RunLoop.current.add(mainStopwatch.timer, forMode: .common)
+            RunLoop.current.add(lapStopwatch.timer, forMode: .common)
+            
+            
+            isPlay = true
+            
+            startAndStopButton.setTitle("Stop", for: .normal)
+        } else {
+            mainStopwatch.timer.invalidate()
+            lapStopwatch.timer.invalidate()
+            isPlay = false
+            startAndStopButton.setTitle("Start", for: .normal)
+            lapAndResetButton.setTitle("Reset", for: .normal)
+        }
+    }
+    
+    @objc func tappedLapAndResetButton() {
+        if !isPlay {
+            resetMainTimer()
+            resetLapTimer()
+            
+            RunLoop.current.add(mainStopwatch.timer, forMode: .common)
+            RunLoop.current.add(lapStopwatch.timer, forMode: .common)
+            
+            lapAndResetButton.setTitle("Lap", for: .normal)
+            lapAndResetButton.isEnabled = false
+        } else {
+            if let timeLabelText = timeLabel.text {
+                lapTimeList.append(timeLabelText)
+            }
+            recordTableView.reloadData()
+            resetLapTimer()
+            lapStopwatch.timer = Timer.scheduledTimer(timeInterval: 0.035, target: self, selector: #selector(tappedLapAndResetButton), userInfo: nil, repeats: true)
+        }
+    }
+    
+    func resetMainTimer() {
+        resetTimer(mainStopwatch, label: timeLabel)
+        lapTimeList.removeAll()
+        recordTableView.reloadData()
+    }
+    
+    func resetLapTimer() {
+        resetTimer(lapStopwatch, label: lapTimeLabel)
+    }
+    
+    func resetTimer(_ stopwatch: Stopwatch, label: UILabel) {
+        stopwatch.timer.invalidate()
+        stopwatch.counter = 0.0
+        label.text = "00:00:00"
+    }
+    
+    @objc func updateMainTimer() {
+        updateTimer(mainStopwatch, label: timeLabel)
+    }
+    
+    @objc func updateLapTimer() {
+        updateTimer(lapStopwatch, label: lapTimeLabel)
+    }
+    
+    func updateTimer(_ stopwatch: Stopwatch, label: UILabel) {
+        stopwatch.counter += 0.035
+        
+        var minutes: String = "\(Int(stopwatch.counter / 60))"
+        if Int(stopwatch.counter / 60) < 10 {
+            minutes = "0\(Int(stopwatch.counter / 60))"
+        }
+        
+        var seconds: String = String(format: "$.2f", (stopwatch.counter.truncatingRemainder(dividingBy: 60)))
+        if stopwatch.counter.truncatingRemainder(dividingBy: 60) < 10 {
+            seconds = "0" + seconds
+        }
+        
+        label.text = minutes + ":" + seconds
+    }
 
    
 }
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return lapTimeList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let identifier = "lapCell"
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        
+        if let labelNum = cell.viewWithTag(11) as? UILabel {
+            labelNum.text = "Lap \(lapTimeList.count - indexPath.row)"
+        }
+        
+        if let labelTimer = cell.viewWithTag(12) as? UILabel {
+            labelTimer.text = lapTimeList[lapTimeList.count - indexPath.row - 1]
+        }
         
         return cell
     }
