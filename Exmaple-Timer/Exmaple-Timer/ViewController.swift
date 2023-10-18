@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import AVFoundation
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     
+    
+    // MARK: - Variables
+    private var timer: Timer?
+    private var num: Int = 0
     
     // MARK: - UIComponents
     private let titleLabel: UILabel = {
@@ -53,6 +58,7 @@ class ViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 23)
         button.backgroundColor = .systemGreen
+        button.addTarget(self, action: #selector(tappedResetButton(sender: )), for: .touchUpInside)
         return button
     }()
     
@@ -62,16 +68,19 @@ class ViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 23)
         button.backgroundColor = .systemBlue
+        button.addTarget(self, action: #selector(tappedStartButton(sender: )), for: .touchUpInside)
         return button
     }()
     
     private let timeSlider: UISlider = {
         let slider = UISlider()
         slider.minimumValue = 0.0
-        slider.maximumValue = 60.0
+        slider.maximumValue = 1.0
         slider.thumbTintColor = .white
         slider.minimumTrackTintColor = .blue
         slider.maximumTrackTintColor = .lightGray
+        slider.setValue(0.5, animated: true)
+        slider.addTarget(self, action: #selector(changedSlider(sender:)), for: .valueChanged)
         return slider
     }()
     
@@ -199,6 +208,34 @@ class ViewController: UIViewController {
             self.buttonStackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
             self.buttonStackView.heightAnchor.constraint(equalToConstant: 50),
         ])
+    }
+    
+    // MARK: - Methods
+    @objc private func changedSlider(sender: UISlider) {
+        self.timeLabel.text = "\(Int(self.timeSlider.value * 60))초"
+        self.num = Int(self.timeSlider.value * 60)
+    }
+    
+    @objc private func tappedStartButton(sender: UIButton) {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { [self] _ in
+            if num > 0 {
+                num -= 1
+                timeSlider.value = Float(num) / Float(60)
+                timeLabel.text = "\(num)초"
+            } else {
+                num = 0
+                timer?.invalidate()
+                AudioServicesPlayAlertSound(SystemSoundID(1322))
+            }
+        })
+    }
+    
+    @objc private func tappedResetButton(sender: UIButton) {
+        timeLabel.text = "초를 선택하세요"
+        timeSlider.setValue(0.5, animated: true)
+        num = 0
+        timer?.invalidate()
     }
     
 }
