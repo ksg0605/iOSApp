@@ -24,8 +24,18 @@ class ViewController: UIViewController {
         return btn
     }()
     
+    private let stackView: UIStackView = {
+        let sv = UIStackView()
+        sv.axis = .horizontal
+        sv.alignment = .fill
+        sv.distribution = .fill
+        sv.spacing = 15
+        return sv
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         
         setupUI()
     }
@@ -33,11 +43,23 @@ class ViewController: UIViewController {
     
     // MARK: - Configure UI
     private func setupUI() {
-        self.view.addSubview(exampleTextfield)
+        
         self.exampleTextfield.translatesAutoresizingMaskIntoConstraints = false
         
+        self.exampleButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(stackView)
+        self.stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        [exampleTextfield, exampleButton].map{
+            self.stackView.addArrangedSubview($0)
+        }
+        
         NSLayoutConstraint.activate([
-            
+            self.stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 180),
+            self.stackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            self.stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: 30),
+            self.stackView.heightAnchor.constraint(equalToConstant: 48),
         ])
     }
 
