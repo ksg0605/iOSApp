@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        self.view.backgroundColor = .white
         
         setupUI()
     }
@@ -47,6 +47,10 @@ class ViewController: UIViewController {
         self.exampleTextfield.translatesAutoresizingMaskIntoConstraints = false
         
         self.exampleButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            self.exampleButton.widthAnchor.constraint(equalToConstant: 48),
+        ])
         
         self.view.addSubview(stackView)
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
