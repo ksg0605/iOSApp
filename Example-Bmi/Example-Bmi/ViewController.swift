@@ -116,6 +116,15 @@ class ViewController: UIViewController {
         setupUI()
     }
     
+    
+    // MARK: - Calculate BMI
+    private func calculateBMI(height: String, weight: String) -> Double {
+        guard let height = Double(height), let weight = Double(weight)  else { return 0.0 }
+        var bmi = weight / height * height * 10000
+        bmi = round(bmi * 10) / 10
+        return bmi
+    }
+    
     // MARK: - Configure UI
     private func setupUI() {
         self.view.addSubview(totalStackView)
