@@ -9,6 +9,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
+    // MARK: - Variables
+    var bmiManager = BMICalculatorManager()
+    var bmi: BMI?
+    
     // MARK: - UI Components
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -57,13 +62,14 @@ class ViewController: UIViewController {
         return tf
     }()
     
-    private let calculateButton: UIButton = {
+    private lazy var calculateButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("BMI 계산하기", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         btn.backgroundColor = .systemBlue
         btn.layer.cornerRadius = 8
+        btn.addTarget(self, action: #selector(tappedCalculateButton), for: .touchUpInside)
         return btn
     }()
     
@@ -117,12 +123,22 @@ class ViewController: UIViewController {
     }
     
     
-    // MARK: - Calculate BMI
-    private func calculateBMI(height: String, weight: String) -> Double {
-        guard let height = Double(height), let weight = Double(weight)  else { return 0.0 }
-        var bmi = weight / height * height * 10000
-        bmi = round(bmi * 10) / 10
-        return bmi
+    // MARK: - TappedCalculateButton
+    @objc private func tappedCalculateButton() {
+        
+        if self.heightTextField.text == "" || self.weightTextField.text == "" {
+            titleLabel.text = "수치를 입력해주세요"
+            titleLabel.textColor = .red
+        } else {
+            let nextVC = SecondViewController()
+            self.bmi = bmiManager.calculateBMI(height: self.heightTextField.text!, weight: self.weightTextField.text!)
+            nextVC.bmi = self.bmi
+            nextVC.modalPresentationStyle = .fullScreen
+            self.present(nextVC, animated: true)
+        }
+        
+        
+        
     }
     
     // MARK: - Configure UI
@@ -166,6 +182,8 @@ class ViewController: UIViewController {
 
 }
 
+
+// MARK: - Extension UITextFieldDelegate
 extension ViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

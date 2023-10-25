@@ -12,6 +12,8 @@
 		086B9E212AE6670100488320 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086B9E202AE6670100488320 /* SceneDelegate.swift */; };
 		086B9E232AE6670100488320 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086B9E222AE6670100488320 /* ViewController.swift */; };
 		086B9E282AE6670300488320 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 086B9E272AE6670300488320 /* Assets.xcassets */; };
+		08CC131A2AE92B360018F667 /* BMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CC13192AE92B360018F667 /* BMI.swift */; };
+		08CC131C2AE92B7B0018F667 /* BMICalculatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CC131B2AE92B7B0018F667 /* BMICalculatorManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		086B9E222AE6670100488320 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		086B9E272AE6670300488320 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		086B9E2C2AE6670300488320 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08CC13192AE92B360018F667 /* BMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMI.swift; sourceTree = "<group>"; };
+		08CC131B2AE92B7B0018F667 /* BMICalculatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMICalculatorManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 				086B9E202AE6670100488320 /* SceneDelegate.swift */,
 				08349DD12AE7D43C009DC8E4 /* SecondViewController.swift */,
 				086B9E222AE6670100488320 /* ViewController.swift */,
+				08CC13192AE92B360018F667 /* BMI.swift */,
+				08CC131B2AE92B7B0018F667 /* BMICalculatorManager.swift */,
 				086B9E272AE6670300488320 /* Assets.xcassets */,
 				086B9E2C2AE6670300488320 /* Info.plist */,
 			);
@@ -133,7 +139,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08CC131A2AE92B360018F667 /* BMI.swift in Sources */,
 				08349DD22AE7D43C009DC8E4 /* SecondViewController.swift in Sources */,
+				08CC131C2AE92B7B0018F667 /* BMICalculatorManager.swift in Sources */,
 				086B9E232AE6670100488320 /* ViewController.swift in Sources */,
 				086B9E1F2AE6670100488320 /* AppDelegate.swift in Sources */,
 				086B9E212AE6670100488320 /* SceneDelegate.swift in Sources */,
