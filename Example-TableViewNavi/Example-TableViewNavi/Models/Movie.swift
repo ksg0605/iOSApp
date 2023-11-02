@@ -8,5 +8,7 @@
 import UIKit
 
 struct Movie {
-    
+    let movieImage: UIImage?
+    let movieName: String
+    let movieDescription: String
 }

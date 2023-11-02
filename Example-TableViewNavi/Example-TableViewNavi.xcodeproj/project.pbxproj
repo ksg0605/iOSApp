@@ -13,6 +13,8 @@
 		082E10072AEF7DE700957276 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 082E10062AEF7DE700957276 /* Assets.xcassets */; };
 		082E10132AEFA20C00957276 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082E10122AEFA20C00957276 /* SecondViewController.swift */; };
 		082E10182AEFA43C00957276 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082E10172AEFA43C00957276 /* Movie.swift */; };
+		08A137EE2AF37FF300F106C2 /* MovieDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A137ED2AF37FF300F106C2 /* MovieDataManager.swift */; };
+		08A137F02AF3B79500F106C2 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A137EF2AF3B79500F106C2 /* MovieTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		082E100B2AEF7DE700957276 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		082E10122AEFA20C00957276 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		082E10172AEFA43C00957276 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		08A137ED2AF37FF300F106C2 /* MovieDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDataManager.swift; sourceTree = "<group>"; };
+		08A137EF2AF3B79500F106C2 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +82,7 @@
 		082E10142AEFA40C00957276 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				082E10012AEF7DE600957276 /* ViewController.swift */,
-				082E10122AEFA20C00957276 /* SecondViewController.swift */,
+				08A137EF2AF3B79500F106C2 /* MovieTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -88,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				082E10172AEFA43C00957276 /* Movie.swift */,
+				08A137ED2AF37FF300F106C2 /* MovieDataManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -95,6 +99,8 @@
 		082E10162AEFA42400957276 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				082E10012AEF7DE600957276 /* ViewController.swift */,
+				082E10122AEFA20C00957276 /* SecondViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -168,7 +174,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08A137EE2AF37FF300F106C2 /* MovieDataManager.swift in Sources */,
 				082E10132AEFA20C00957276 /* SecondViewController.swift in Sources */,
+				08A137F02AF3B79500F106C2 /* MovieTableViewCell.swift in Sources */,
 				082E10022AEF7DE600957276 /* ViewController.swift in Sources */,
 				082E0FFE2AEF7DE600957276 /* AppDelegate.swift in Sources */,
 				082E10002AEF7DE600957276 /* SceneDelegate.swift in Sources */,
