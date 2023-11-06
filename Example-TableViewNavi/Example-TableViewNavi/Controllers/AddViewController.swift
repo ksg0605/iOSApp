@@ -1,17 +1,24 @@
 //
-//  SecondViewController.swift
+//  AddViewController.swift
 //  Example-TableViewNavi
 //
-//  Created by 김선규 on 10/30/23.
+//  Created by 김선규 on 11/5/23.
 //
 
 import UIKit
 
-class SecondViewController: UIViewController {
-
+class AddViewController: UIViewController {
+    
+    private let detailView = DetailView()
+    var movieData: Movie?
+    
+    override func loadView() {
+        self.view = detailView
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+    
         // Do any additional setup after loading the view.
     }
     

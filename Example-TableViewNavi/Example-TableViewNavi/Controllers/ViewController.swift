@@ -65,8 +65,8 @@ class ViewController: UIViewController {
     }
     
     @objc private func didTapButton() {
-        let vc = SecondViewController()
-        self.navigationController?.pushViewController(vc, animated: false)
+        let addVC = AddViewController()
+        self.navigationController?.pushViewController(addVC, animated: true)
     }
 
 }
@@ -90,5 +90,10 @@ extension ViewController: UITableViewDataSource {
 
 
 extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = DetailVIewController()
+        detailVC.movieData = moviesArray[indexPath.row]
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
     
 }
