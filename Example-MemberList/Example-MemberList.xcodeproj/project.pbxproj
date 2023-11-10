@@ -14,6 +14,7 @@
 		0880C21D2AF90703008A8259 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880C21C2AF90703008A8259 /* Member.swift */; };
 		0880C21F2AF90849008A8259 /* MemberListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880C21E2AF90849008A8259 /* MemberListManager.swift */; };
 		0880C2212AF90ED1008A8259 /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880C2202AF90ED1008A8259 /* MemberTableViewCell.swift */; };
+		0891A5902AFE6DD6006C3E09 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891A58F2AFE6DD6006C3E09 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		0880C21C2AF90703008A8259 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		0880C21E2AF90849008A8259 /* MemberListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListManager.swift; sourceTree = "<group>"; };
 		0880C2202AF90ED1008A8259 /* MemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
+		0891A58F2AFE6DD6006C3E09 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				0880C2202AF90ED1008A8259 /* MemberTableViewCell.swift */,
+				0891A58F2AFE6DD6006C3E09 /* DetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 				0880C21F2AF90849008A8259 /* MemberListManager.swift in Sources */,
 				0880C2212AF90ED1008A8259 /* MemberTableViewCell.swift in Sources */,
 				0880C2092AF9035D008A8259 /* ViewController.swift in Sources */,
+				0891A5902AFE6DD6006C3E09 /* DetailView.swift in Sources */,
 				0880C2052AF9035D008A8259 /* AppDelegate.swift in Sources */,
 				0880C2072AF9035D008A8259 /* SceneDelegate.swift in Sources */,
 				0880C21D2AF90703008A8259 /* Member.swift in Sources */,
