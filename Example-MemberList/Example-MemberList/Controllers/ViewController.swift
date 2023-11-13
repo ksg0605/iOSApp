@@ -7,10 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
     // MARK: - Variables
-    let membersListManager = MemberListManager()
+    var membersListManager = MemberListManager()
     
     // MARK: - UIComponents
     private let tableView = UITableView()
@@ -62,7 +62,8 @@ class ViewController: UIViewController {
     }
     
     @objc private func didTapAddButton() {
-        
+        let detailVC = DetailViewController()
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
 }
@@ -82,7 +83,28 @@ extension ViewController: UITableViewDataSource {
     
 }
 
-// MARK: - UITableViewDelegate
+// MARK: - Extension: UITableViewDelegate
 extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = DetailViewController()
+        
+        let currentMember = membersListManager.getMembersList()[indexPath.row]
+        detailVC.member = currentMember
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+// MARK: - Extension: MemberDelegate (Custom)
+extension ViewController: MemberDelegate {
+    func addNewMember(_ member: Member) {
+        membersListManager.makeNewMember(member)
+        tableView.reloadData()
+    }
+    
+    func update(index: Int, member: Member) {
+        membersListManager.updateMemberInfo(index: index, member)
+        tableView.reloadData()
+    }
+    
     
 }

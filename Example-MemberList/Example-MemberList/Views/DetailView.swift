@@ -340,4 +340,3 @@ class DetailView: UIView {
     }
 
 
-}
