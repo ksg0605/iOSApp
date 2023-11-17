@@ -12,6 +12,7 @@
 		0895D7902B02352100BBB5F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895D78F2B02352100BBB5F4 /* ViewController.swift */; };
 		0895D7952B02352300BBB5F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0895D7942B02352300BBB5F4 /* Assets.xcassets */; };
 		0895D7A42B02432200BBB5F4 /* MusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895D7A32B02432200BBB5F4 /* MusicTableViewCell.swift */; };
+		08B6674E2B07B1FA00BC892B /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B6674D2B07B1FA00BC892B /* Music.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		0895D7942B02352300BBB5F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0895D7992B02352300BBB5F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0895D7A32B02432200BBB5F4 /* MusicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTableViewCell.swift; sourceTree = "<group>"; };
+		08B6674D2B07B1FA00BC892B /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 		0895D7A12B0242DF00BBB5F4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				08B6674D2B07B1FA00BC892B /* Music.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			files = (
 				0895D7902B02352100BBB5F4 /* ViewController.swift in Sources */,
 				0895D78C2B02352100BBB5F4 /* AppDelegate.swift in Sources */,
+				08B6674E2B07B1FA00BC892B /* Music.swift in Sources */,
 				0895D78E2B02352100BBB5F4 /* SceneDelegate.swift in Sources */,
 				0895D7A42B02432200BBB5F4 /* MusicTableViewCell.swift in Sources */,
 			);
