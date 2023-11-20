@@ -9,8 +9,17 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: - Variables
+    var networkManager = NetworkManager.shared
+    var musicArrays: [Music] = []
+    
     // MARK: - UI Components
-    private let tableView = UITableView()
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.rowHeight = 120
+        return tableView
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +30,7 @@ class ViewController: UIViewController {
         setupNavigationBar()
         setupSearchController()
         setupUI()
+        setupDatas()
     }
     
     private func setupNavigationBar() {
@@ -57,29 +67,54 @@ class ViewController: UIViewController {
             
         ])
     }
+    
+    func setupDatas() {
+        networkManager.fetchMusic(searchTerm: "jazz") { result in
+            switch result {
+                case .success(let musicDatas):
+                    self.musicArrays = musicDatas
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
+        }
+    }
 
 }
 
 // MARK: - Extension:
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.musicArrays.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: Cell.musicCellIdentifier, for: indexPath) as! MusicCell
+        cell.imageUrl = musicArrays[indexPath.row].imageUrl
+        cell.songNameLabel.text = musicArrays[indexPath.row].songName
+        cell.artistNameLabel.text = musicArrays[indexPath.row].artistName
+        cell.albumNameLabel.text = musicArrays[indexPath.row].albumName
+        cell.releaseDateLabel.text = musicArrays[indexPath.row].releaseDateString
+        
+        cell.selectionStyle = .none
+        return cell
     }
 }
 
 // MARK: -Extension
 extension ViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
 }
 
 // MARK: - Extension: UISearchResultsUpdating
 extension ViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-//        <#code#>
+//        let vc = searchController.searchResultsController as! SearchResultViewController
+//        vc.searchTerm = searchController.searchBar.text ?? ""
     }
     
     
