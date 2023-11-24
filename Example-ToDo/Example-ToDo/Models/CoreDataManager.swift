@@ -45,6 +45,18 @@ final class CoreDataManager {
             if let entity = NSEntityDescription.entity(forEntityName: self.modelName, in: context) {
                 if let toDoData = NSManagedObject(entity: entity, insertInto: context) as? ToDoData {
                     toDoData.memoText = toDoText
+                    toDoData.date = Date()   
+                    toDoData.color = colorInt
+                    
+                    if context.hasChanges {
+                        do {
+                            try context.save()
+                            completion()
+                        } catch {
+                            print(error)
+                            completion()
+                        }
+                    }
                 }
             }
         }
