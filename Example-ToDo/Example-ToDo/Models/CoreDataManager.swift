@@ -62,5 +62,88 @@ final class CoreDataManager {
         }
     }
     
+    func deleteToDo(data: ToDoData, completion: @escaping () -> Void) {
+        
+        guard let date = data.date else {
+            completion()
+            return
+        }
+        
+        
+        if let context = context {
+            
+            let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
+            
+            request.predicate = NSPredicate(format: "date = %@", date as CVarArg)
+            
+            do {
+                
+                if let fetchedToDoList = try context.fetch(request) as? [ToDoData] {
+                    
+                    
+                    if let targetToDo = fetchedToDoList.first {
+                        context.delete(targetToDo)
+                        
+                        
+                        if context.hasChanges {
+                            do {
+                                try context.save()
+                                completion()
+                            } catch {
+                                print(error)
+                                completion()
+                            }
+                        }
+                    }
+                }
+                completion()
+            } catch {
+                print("지우는 것 실패")
+                completion()
+            }
+        }
+    }
     
+    func updateToDo(newToDoData: ToDoData, completion: @escaping () -> Void) {
+        
+        guard let date = newToDoData.date else {
+            completion()
+            return
+        }
+        
+        
+        if let context = context {
+            
+            let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
+            
+            request.predicate = NSPredicate(format: "date = %@", date as CVarArg)
+            
+            do {
+                
+                if let fetchedToDoList = try context.fetch(request) as? [ToDoData] {
+                    
+                    if var targetToDo = fetchedToDoList.first {
+                        
+                        
+                        targetToDo = newToDoData
+                        
+                        
+                        if context.hasChanges {
+                            do {
+                                try context.save()
+                                completion()
+                            } catch {
+                                print(error)
+                                completion()
+                            }
+                        }
+                    }
+                }
+                completion()
+            } catch {
+                print("지우는 것 실패")
+                completion()
+            }
+        }
+    }
 }
