@@ -9,8 +9,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: - Variables
+    let toDoManager = CoreDataManager.shared
+    
     // MARK: - UI Components
     private let tableView = UITableView()
+    
     
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
@@ -70,10 +74,20 @@ class ViewController: UIViewController {
 // MARK: - Extension: UITableViewDataSource
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return toDoManager.getToDoListFromCoreData().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoCell", for: indexPath) as! ToDoCell
+        
+        let toDoData = toDoManager.getToDoListFromCoreData()
+        cell.toDoData = toDoData[indexPath.row]
+        
+        cell.didTapUpdateButtonClosure = { [weak self] (senderCell) in
+                let detailVC = DetailViewController()
+            let selectedToDo = self?.toDoManager.getToDoListFromCoreData()[indexPath.row]
+//            detailVC.toDoData = selectedToDo
+        }
         return UITableViewCell()
     }
     

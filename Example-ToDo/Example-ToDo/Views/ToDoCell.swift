@@ -14,7 +14,10 @@ class ToDoCell: UITableViewCell {
         didSet {
             configureUIwithData()
         }
-    }
+        
+            }
+    var didTapUpdateButtonClosure: (ToDoCell) -> Void = { (sender) in }
+
     // MARK: - UI Components
     let backView: UIView = {
         let view = UIView()
@@ -70,9 +73,53 @@ class ToDoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func didTapUpdateButton() {
-        let nextVC = DetailViewController()
-        self.present(nextVC, animated: true)
+    // MARK: - Configure UI
+    private func configreUI() {
+        self.contentView.addSubview(backView)
+        self.contentView.addSubview(stackView)
+        
+        self.basicView.addSubview(dateTextLabel)
+        self.basicView.addSubview(updateButton)
+        
+        NSLayoutConstraint.activate([
+            backView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 25),
+            backView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -25),
+            backView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            backView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
+            
+            stackView.leadingAnchor.constraint(equalTo: self.backView.leadingAnchor, constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: self.backView.trailingAnchor, constant: -10),
+            stackView.topAnchor.constraint(equalTo: self.backView.topAnchor, constant: 10),
+            stackView.bottomAnchor.constraint(equalTo: self.backView.bottomAnchor, constant: -10),
+            
+            memoTextLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
+            
+            basicView.heightAnchor.constraint(equalToConstant: 30),
+            
+            dateTextLabel.leadingAnchor.constraint(equalTo: self.basicView.leadingAnchor, constant: 0),
+            dateTextLabel.bottomAnchor.constraint(equalTo: self.basicView.bottomAnchor, constant: 0),
+            
+            updateButton.widthAnchor.constraint(equalToConstant: 70),
+            updateButton.heightAnchor.constraint(equalToConstant: 26),
+            updateButton.trailingAnchor.constraint(equalTo: self.basicView.trailingAnchor, constant: 0),
+            updateButton.bottomAnchor.constraint(equalTo: self.basicView.bottomAnchor, constant: 0),
+        ])
+        
+        memoTextLabel.setContentCompressionResistancePriority(.init(rawValue: 752), for: .horizontal)
+    }
+    
+    
+    func configureUIwithData() {
+        memoTextLabel.text = toDoData?.memoText
+        dateTextLabel.text = toDoData?.dateString
+        guard let colorNum = toDoData?.color else { return }
+        let color = MyColor(rawValue: colorNum) ?? .red
+        updateButton.backgroundColor = color.buttonColor
+        backView.backgroundColor = color.bacgroundColor
+    }
+    
+    @objc private func didTapUpdateButton(_ sender: UIButton) {
+        didTapUpdateButtonClosure(self)
 
     }
 }
