@@ -13,7 +13,7 @@ enum MyColor: Int64 {
     case blue     = 3
     case purple   = 4
     
-    var bacgroundColor: UIColor {
+    var backgroundColor: UIColor {
         switch self {
         case .red:
             return UIColor(red: 239/255, green: 217/255, blue: 212/255, alpha: 1)

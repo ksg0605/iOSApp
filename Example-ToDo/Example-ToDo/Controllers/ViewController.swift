@@ -86,9 +86,13 @@ extension ViewController: UITableViewDataSource {
         cell.didTapUpdateButtonClosure = { [weak self] (senderCell) in
                 let detailVC = DetailViewController()
             let selectedToDo = self?.toDoManager.getToDoListFromCoreData()[indexPath.row]
-//            detailVC.toDoData = selectedToDo
+            detailVC.toDoData = selectedToDo
+            self?.navigationController?.pushViewController(detailVC, animated: true)
+        
         }
-        return UITableViewCell()
+        
+        cell.selectionStyle = .none
+        return cell
     }
     
     
